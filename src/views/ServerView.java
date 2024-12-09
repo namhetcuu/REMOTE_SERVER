@@ -15,14 +15,17 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class ServerView extends JFrame {
 
 	private JPanel contentPane;
 	public JTextField portTf;
-	public JButton startBt;
+	public JButton startBt,stopBt,saveBt;
+	
 	public JTextArea contentServer;
 	public JLabel ipv4;
+	private final JLabel lblNewLabel = new JLabel("Status: Server stopped");
 
 	/**
 	 * Launch the application.
@@ -45,7 +48,7 @@ public class ServerView extends JFrame {
 	public ServerView() {
 		setTitle("Máy chủ");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 481, 377);
+		setBounds(100, 100, 878, 576);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -53,60 +56,82 @@ public class ServerView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.decode("#181818"));
-		panel.setBounds(0, 0, 465, 338);
+		panel.setBackground(new Color(192, 192, 192));
+		panel.setBounds(0, 0, 864, 529);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		ipv4 = new JLabel("", SwingConstants.CENTER);
-		ipv4.setForeground(Color.decode("#85ccf2"));
+		ipv4 = new JLabel("o my gosh", SwingConstants.CENTER);
+		ipv4.setForeground(new Color(0, 0, 0));
 		ipv4.setFont(new Font("Roboto", Font.BOLD, 20));
-		ipv4.setBounds(10, 11, 434, 19);
+		ipv4.setBounds(10, 10, 434, 20);
 		panel.add(ipv4);
 		
 		JPanel startPanel = new JPanel();
-		startPanel.setBackground(Color.decode("#1e1e1e"));
-		startPanel.setBounds(10, 41, 445, 39);
+		startPanel.setBackground(new Color(255, 255, 255));
+		startPanel.setBounds(10, 41, 844, 62);
 		panel.add(startPanel);
 		startPanel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("PORT");
-		lblNewLabel_1.setForeground(Color.decode("#85ccf2"));
-		lblNewLabel_1.setFont(new Font("Roboto", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(10, 11, 46, 14);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(10, 12, 82, 32);
 		startPanel.add(lblNewLabel_1);
 		
 		portTf = new JTextField();
-		portTf.setBackground(Color.decode("#1e1e1e"));
-		portTf.setForeground(Color.decode("#85ccf2"));
-		portTf.setFont(new Font("Roboto", Font.PLAIN, 12));
-		portTf.setBounds(66, 8, 136, 20);
+		portTf.setBackground(new Color(255, 255, 255));
+		portTf.setForeground(new Color(0, 0, 0));
+		portTf.setFont(new Font("Dialog", Font.BOLD, 15));
+		portTf.setBounds(84, 8, 165, 44);
 		portTf.setHorizontalAlignment(JTextField.CENTER);
 		startPanel.add(portTf);
 		portTf.setColumns(10);
 		
-		startBt = new JButton("Khởi động máy chủ");
-		startBt.setBackground(Color.decode("#3d3b37"));
-		startBt.setForeground(Color.decode("#85ccf2"));
-		startBt.setFont(new Font("Roboto", Font.PLAIN, 12));
-		startBt.setBounds(218, 7, 178, 23);
+		startBt = new JButton("Start Server");
+		startBt.setIcon(new ImageIcon(ServerView.class.getResource("/images/play.png")));
+		startBt.setBackground(new Color(255, 255, 255));
+		startBt.setForeground(new Color(0, 0, 0));
+		startBt.setFont(new Font("Dialog", Font.BOLD, 15));
+		startBt.setBounds(259, 9, 199, 41);
 		startPanel.add(startBt);
 		
+		stopBt = new JButton("Stop Server");
+		stopBt.setBackground(new Color(255, 255, 255));
+		stopBt.setIcon(new ImageIcon(ServerView.class.getResource("/images/stop-button.png")));
+		stopBt.setSelectedIcon(new ImageIcon(ServerView.class.getResource("/images/stopped.png")));
+		stopBt.setFont(new Font("Tahoma", Font.BOLD, 15));
+		stopBt.setBounds(468, 7, 191, 44);
+		stopBt.setEnabled(false);
+		startPanel.add(stopBt);
+		
+		saveBt = new JButton("Save Log");
+		saveBt.setBackground(new Color(255, 255, 255));
+		saveBt.setIcon(new ImageIcon(ServerView.class.getResource("/images/diskette.png")));
+		saveBt.setFont(new Font("Tahoma", Font.BOLD, 15));
+		saveBt.setBounds(669, 7, 165, 44);
+		startPanel.add(saveBt);
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.decode("#1e1e1e"));
-		panel_1.setBounds(10, 91, 445, 236);
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(10, 127, 844, 363);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 0, 425, 225);
+		scrollPane.setBounds(10, 10, 824, 343);
 		panel_1.add(scrollPane);
 		
 		contentServer = new JTextArea();
-		contentServer.setForeground(Color.decode("#85ccf2"));
-		contentServer.setBackground(Color.decode("#1e1e1e"));
+		contentServer.setBounds(10, 10, 824, 343);
+		panel_1.add(contentServer);
+		contentServer.setForeground(new Color(0, 0, 0));
+		contentServer.setBackground(new Color(192, 192, 192));
 		contentServer.setFont(new Font("Roboto", Font.PLAIN, 15));
-		scrollPane.setViewportView(contentServer);
+		lblNewLabel.setForeground(new Color(0, 128, 0));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(10, 494, 272, 25);
+		panel.add(lblNewLabel);
 		setVisible(true);
 		setLocationRelativeTo(null);
 	}
@@ -116,7 +141,14 @@ public class ServerView extends JFrame {
 	}
 	
 	public void disableButtonConnect() {
-		startBt.setText("Máy chủ đang hoạt động");
+		lblNewLabel.setText("Status: Server is running");
 		startBt.setEnabled(false);
+		stopBt.setEnabled(true);
+		
+	}
+	public void enableButtonConnect() {
+		lblNewLabel.setText("Status: Server is stopped");
+		startBt.setEnabled(true);
+		stopBt.setEnabled(false);
 	}
 }

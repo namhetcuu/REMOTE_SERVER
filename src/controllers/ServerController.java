@@ -26,10 +26,24 @@ public class ServerController extends Thread{
 				isStart = true;
 			}
 		});
+		serverView.stopBt.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				if(server!=null&&isStart) {
+					server.stopServer();
+					isStart = false;
+					serverView.enableButtonConnect();
+				}
+				
+			}
+		});
 	}
+	
 	@Override
 	public void run() {
-		System.out.println("a");
+		System.out.println("ok");
 		while(true) {
             if (isStart) {
                 String content = server.getContent();
