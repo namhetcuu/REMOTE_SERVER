@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Server extends Thread {
     private int port;
@@ -107,9 +108,20 @@ public class Server extends Thread {
        // System.out.println(timestampedText); // Ghi log ra console
     }
 
+//    public static Socket findSocketByUser(User user) {
+//        return users.get(user);
+//    }
     public static Socket findSocketByUser(User user) {
-        return users.get(user);
+        synchronized (users) {
+            for (Map.Entry<User, Socket> entry : users.entrySet()) {
+                if (entry.getKey().equals(user)) {
+                    return entry.getValue();
+                }
+            }
+        }
+        return null;
     }
+
 
     public static User findUserBySocket(Socket socket) {
         for (User user : users.keySet()) {

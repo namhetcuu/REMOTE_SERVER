@@ -26,6 +26,7 @@ public class ServerController extends Thread{
 				isStart = true;
 			}
 		});
+		//1280x800
 		serverView.stopBt.addActionListener(new ActionListener() {
 			
 			
@@ -38,6 +39,7 @@ public class ServerController extends Thread{
 				}
 				
 			}
+			
 		});
 	}
 	

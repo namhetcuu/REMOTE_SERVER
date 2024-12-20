@@ -7,6 +7,8 @@ public class Messager implements Serializable {
 	private String text;
     private Object object;
     private Object object2;
+    private byte[] fileContent; // Dữ liệu file
+    private String fileName; // Tên file
 
     public Messager() {
         this.text = "";
@@ -25,6 +27,13 @@ public class Messager implements Serializable {
         this.text = text;
         this.object = object;
         this.object2 = object2;
+    }
+    
+    public Messager(String text, Object object2, byte[] fileContent, String fileName) {
+        this.text = text;
+        this.object2 = object2;
+        this.fileContent = fileContent;
+        this.fileName = fileName;
     }
 
     public String toString() {
@@ -58,4 +67,11 @@ public class Messager implements Serializable {
 	public void setObject(Object object) {
 		this.object = object;
 	}
+	public byte[] getFileContent() {
+        return fileContent;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
 }
